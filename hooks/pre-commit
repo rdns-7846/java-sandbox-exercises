@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Exit immediately if a command fails
+set -e
+
+# Inform the user
+echo "Running Spotless to format Java code..."
+
+# Check if mvnd is installed, otherwise use mvn
+if command -v mvnd &> /dev/null; then
+    mvn_command="mvnd"
+else
+    mvn_command="mvn"
+fi
+
+echo using $mvn_command
+
+# Run Spotless to format code
+$mvn_command spotless:apply
+
+# Find and re-add only modified Java files to the commit
+# This ensures only staged Java files are updated in the commit
+for file in $(git diff --cached --name-only -- '*.java'); do
+    git add "$file"
+done
+
+# Check if there are any staged changes left after formatting
+if ! git diff --cached --quiet; then
+    echo "Spotless formatted Java files and staged the changes."
+else
+    echo "No Java files were formatted by Spotless."
+fi
+
+# Allow the commit to proceed
+exit 0
