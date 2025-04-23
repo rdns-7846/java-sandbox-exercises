@@ -24,7 +24,7 @@ public class SumSingleNumberTest {
     }
 
     @Test
-    public void sumSingleNumberNumberExistsFour() {
+    public void sumSingleNumberNumberExistsDoubleDieNumber() {
         List<Integer> roll = List.of(2, 2, 3, 4, 5, 6);
         Die die = new Die(roll);
         int result = SumSingleNumber.score(die, 2);
