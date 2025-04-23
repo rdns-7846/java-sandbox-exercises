@@ -8,7 +8,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionLeft() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.NORTH);
         var action = Action.LEFT;
 
@@ -19,7 +19,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionRight() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.NORTH);
         var action = Action.RIGHT;
 
@@ -30,7 +30,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionLeftEast() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.EAST);
         var action = Action.LEFT;
 
@@ -41,7 +41,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionRightEast() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.EAST);
         var action = Action.RIGHT;
 
@@ -52,7 +52,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionLeftSouth() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.SOUTH);
         var action = Action.LEFT;
 
@@ -63,7 +63,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionRightSouth() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.SOUTH);
         var action = Action.RIGHT;
 
@@ -74,7 +74,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionLeftWest() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.WEST);
         var action = Action.LEFT;
 
@@ -85,7 +85,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionRightWest() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.WEST);
         var action = Action.RIGHT;
 
@@ -96,7 +96,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionForwardNorth() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.NORTH);
         var action = Action.FORWARD;
 
@@ -107,7 +107,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionForwardSouth() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.SOUTH);
         var action = Action.FORWARD;
 
@@ -118,7 +118,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionForwardWest() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.WEST);
         var action = Action.FORWARD;
 
@@ -129,7 +129,7 @@ public class RoverTest {
 
     @Test
     public void testRoverActionForwardEast() {
-        var coordinate = new Coordinate(0, 0);
+        var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.EAST);
         var action = Action.FORWARD;
 

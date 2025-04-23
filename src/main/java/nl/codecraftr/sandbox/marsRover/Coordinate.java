@@ -12,10 +12,10 @@ public class Coordinate {
     @Getter
     private boolean accessible;
 
-    public Coordinate(int x, int y) {
+    public Coordinate(int x, int y, boolean accessible) {
         this.x = this.wrapCoordinateIfNeeded(x);
         this.y = this.wrapCoordinateIfNeeded(y);
-        this.accessible = true;
+        this.accessible = accessible;
     }
 
     public String getPosition() {
@@ -35,16 +35,16 @@ public class Coordinate {
     public Coordinate determineNeighbor(Direction direction) {
         switch (direction) {
             case NORTH -> {
-                return new Coordinate(this.x, this.y - 1);
+                return new Coordinate(this.x, this.y - 1, true);
             }
             case EAST -> {
-                return new Coordinate(this.x + 1, this.y);
+                return new Coordinate(this.x + 1, this.y, true);
             }
             case SOUTH -> {
-                return new Coordinate(this.x, this.y + 1);
+                return new Coordinate(this.x, this.y + 1, true);
             }
             default -> { // WEST
-                return new Coordinate(this.x - 1, this.y);
+                return new Coordinate(this.x - 1, this.y, true);
             }
         }
     }
