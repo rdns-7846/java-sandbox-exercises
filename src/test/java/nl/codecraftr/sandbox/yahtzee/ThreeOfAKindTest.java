@@ -30,4 +30,12 @@ public class ThreeOfAKindTest {
         int result = OfAKind.score(die, 3);
         assertThat(result).isEqualTo(15);
     }
+
+    @Test
+    public void sumSingle4OAKExistsNo3OAKIsTaken() {
+        List<Integer> roll = List.of(3, 3, 3, 3, 4, 6);
+        Die die = new Die(roll);
+        int result = OfAKind.score(die, 3);
+        assertThat(result).isEqualTo(0);
+    }
 }
