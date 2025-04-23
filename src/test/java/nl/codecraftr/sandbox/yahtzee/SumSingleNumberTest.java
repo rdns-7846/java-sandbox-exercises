@@ -9,7 +9,7 @@ public class SumSingleNumberTest {
 
     @Test
     public void sumSingleNumberNumberExists() {
-        List<Integer> roll = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> roll = List.of(1, 2, 3, 4, 5);
         Die die = new Die(roll);
         int result = SumSingleNumber.score(die, 1);
         assertThat(result).isEqualTo(1);
@@ -17,7 +17,7 @@ public class SumSingleNumberTest {
 
     @Test
     public void sumSingleNumberNumberExistsTwo() {
-        List<Integer> roll = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> roll = List.of(1, 2, 3, 4, 5);
         Die die = new Die(roll);
         int result = SumSingleNumber.score(die, 2);
         assertThat(result).isEqualTo(2);
@@ -25,7 +25,7 @@ public class SumSingleNumberTest {
 
     @Test
     public void sumSingleNumberNumberExistsDoubleDieNumber() {
-        List<Integer> roll = List.of(2, 2, 3, 4, 5, 6);
+        List<Integer> roll = List.of(2, 2, 3, 4, 5);
         Die die = new Die(roll);
         int result = SumSingleNumber.score(die, 2);
         assertThat(result).isEqualTo(4);

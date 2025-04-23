@@ -9,8 +9,9 @@ public class DieTest {
 
     @Test
     public void testContentDie() {
-        List<Integer> roll = List.of(1, 2, 3, 4, 5, 6);
+        List<Integer> roll = List.of(1, 2, 3, 4, 5);
         Die die = new Die(roll);
         assertThat(die.getRoll()).isEqualTo(roll);
+        assertThat(die.getRoll().size()).isEqualTo(5);
     }
 }

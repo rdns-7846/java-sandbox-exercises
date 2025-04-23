@@ -9,7 +9,7 @@ public class PairTest {
 
     @Test
     public void sumSinglePairExists() {
-        List<Integer> roll = List.of(3, 3, 3, 4, 4, 6);
+        List<Integer> roll = List.of(3, 3, 3, 4, 4);
         Die die = new Die(roll);
         int result = OfAKind.score(die, 2);
         assertThat(result).isEqualTo(8);
@@ -17,7 +17,7 @@ public class PairTest {
 
     @Test
     public void sumNoPairExists() {
-        List<Integer> roll = List.of(1, 3, 3, 2, 4, 6);
+        List<Integer> roll = List.of(1, 3, 5, 2, 4);
         Die die = new Die(roll);
         int result = OfAKind.score(die, 2);
         assertThat(result).isEqualTo(0);
@@ -25,7 +25,7 @@ public class PairTest {
 
     @Test
     public void sumDoublePairExistsTakeLargestPair() {
-        List<Integer> roll = List.of(3, 3, 2, 5, 5, 6);
+        List<Integer> roll = List.of(3, 3, 2, 5, 5);
         Die die = new Die(roll);
         int result = OfAKind.score(die, 2);
         assertThat(result).isEqualTo(10);
