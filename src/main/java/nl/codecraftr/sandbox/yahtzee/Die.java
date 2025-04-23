@@ -13,4 +13,8 @@ public class Die {
     public List<Integer> getRoll() {
         return roll;
     }
+
+    public int countOf(int number) {
+        return this.getRoll().stream().filter(n -> n.equals(number)).toList().size();
+    }
 }
