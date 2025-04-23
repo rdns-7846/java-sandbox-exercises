@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>nl.codecraftr</groupId>
-  <artifactId>java_sandbox</artifactId>
+  <artifactId>java_sandbox_exercises</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>Java Sandbox</name>
 

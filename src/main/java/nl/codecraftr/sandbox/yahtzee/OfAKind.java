@@ -1,15 +1,15 @@
 package nl.codecraftr.sandbox.yahtzee;
 import java.util.List;
 
-public class Pair {
+public class OfAKind {
 
-    public static Integer score(Die die) {
+    public static Integer score(Die die, int ofAKind) {
         var dieRoll = die.getRoll();
         var largestPairNumber = dieRoll.stream()
-            .filter(n -> Pair.getNumberCountInList(dieRoll,n) == 2 )
+            .filter(n -> OfAKind.getNumberCountInList(dieRoll, n) == ofAKind )
             .mapToInt(Integer::intValue)
             .max().orElse(0);
-        return largestPairNumber *2;
+        return largestPairNumber *ofAKind;
     }
 
     private static int getNumberCountInList(List<Integer> dieRoll, int number){
