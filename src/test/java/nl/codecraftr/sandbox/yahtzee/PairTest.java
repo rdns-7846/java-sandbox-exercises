@@ -14,6 +14,7 @@ public class PairTest {
         int result = OfAKind.score(die, 2);
         assertThat(result).isEqualTo(8);
     }
+
     @Test
     public void sumNoPairExists() {
         List<Integer> roll = List.of(1, 3, 3, 2, 4, 6);
