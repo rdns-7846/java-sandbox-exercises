@@ -30,30 +30,30 @@ public class CoordinateTest {
     }
 
     @Test
-    public void testCoordinateMoveNorth() {
+    public void testCoordinateDetermineNeighborNorth() {
         var coordinate = new Coordinate(0, 0);
-        var newCoordinate = coordinate.move(Direction.NORTH);
+        var newCoordinate = coordinate.determineNeighbor(Direction.NORTH);
         assertThat(newCoordinate).extracting(Coordinate::getPosition).isEqualTo("(0,4)");
     }
 
     @Test
-    public void testCoordinateMoveSouth() {
+    public void testCoordinateDetermineNeighborSouth() {
         var coordinate = new Coordinate(0, 0);
-        var newCoordinate = coordinate.move(Direction.SOUTH);
+        var newCoordinate = coordinate.determineNeighbor(Direction.SOUTH);
         assertThat(newCoordinate).extracting(Coordinate::getPosition).isEqualTo("(0,1)");
     }
 
     @Test
-    public void testCoordinateMoveWest() {
+    public void testCoordinateDetermineNeighborWest() {
         var coordinate = new Coordinate(0, 0);
-        var newCoordinate = coordinate.move(Direction.WEST);
+        var newCoordinate = coordinate.determineNeighbor(Direction.WEST);
         assertThat(newCoordinate).extracting(Coordinate::getPosition).isEqualTo("(4,0)");
     }
 
     @Test
-    public void testCoordinateMoveEast() {
+    public void testCoordinateDetermineNeighborEast() {
         var coordinate = new Coordinate(0, 0);
-        var newCoordinate = coordinate.move(Direction.EAST);
+        var newCoordinate = coordinate.determineNeighbor(Direction.EAST);
         assertThat(newCoordinate).extracting(Coordinate::getPosition).isEqualTo("(1,0)");
     }
 }

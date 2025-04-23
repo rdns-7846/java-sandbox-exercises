@@ -32,7 +32,7 @@ public class Coordinate {
         return coordinateNumeral;
     }
 
-    public Coordinate move(Direction direction) {
+    public Coordinate determineNeighbor(Direction direction) {
         switch (direction) {
             case NORTH -> {
                 return new Coordinate(this.x, this.y - 1);

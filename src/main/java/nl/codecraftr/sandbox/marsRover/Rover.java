@@ -28,7 +28,7 @@ public class Rover {
     }
 
     private Rover move() {
-        var newCoordinate = this.coordinate.move(this.direction);
+        var newCoordinate = this.coordinate.determineNeighbor(this.direction);
         if (newCoordinate.isAccessible()) {
             return new Rover(newCoordinate, this.direction);
         }
