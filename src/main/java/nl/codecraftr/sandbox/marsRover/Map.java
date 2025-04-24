@@ -62,4 +62,12 @@ public class Map {
     public Coordinate getCoordinateInMap(int x, int y) {
         return grid.get(x).get(y);
     }
+
+    public void applyAction(Action action) {
+        var rover = this.rover;
+        var nextCoordinate = rover.getProspectCoordinate();
+        boolean isAccessible = this.getCoordinateInMap(nextCoordinate.getX(), nextCoordinate.getY())
+                .isAccessible();
+        this.rover = rover.doAction(action, isAccessible);
+    }
 }

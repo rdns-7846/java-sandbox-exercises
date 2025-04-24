@@ -19,10 +19,10 @@ public class Rover {
         this.prospectCoordinate = this.prospectCoordinate();
     }
 
-    public Rover doAction(Action action) {
+    public Rover doAction(Action action, boolean canMove) {
         switch (action) {
             case FORWARD -> {
-                return this.move();
+                return this.move(canMove);
             }
             default -> {
                 var direction = this.determineNewDirection(action);
@@ -31,8 +31,8 @@ public class Rover {
         }
     }
 
-    private Rover move() {
-        if (prospectCoordinate.isAccessible()) {
+    private Rover move(boolean canMove) {
+        if (canMove) {
             return new Rover(prospectCoordinate, this.direction);
         }
         return this;
@@ -44,16 +44,16 @@ public class Rover {
 
         switch (direction) {
             case NORTH -> {
-                return new Coordinate(xPosition, yPosition - 1, true);
+                return new Coordinate(xPosition - 1, yPosition, true);
             }
             case EAST -> {
-                return new Coordinate(xPosition + 1, yPosition, true);
-            }
-            case SOUTH -> {
                 return new Coordinate(xPosition, yPosition + 1, true);
             }
+            case SOUTH -> {
+                return new Coordinate(xPosition + 1, yPosition, true);
+            }
             default -> { // WEST
-                return new Coordinate(xPosition - 1, yPosition, true);
+                return new Coordinate(xPosition, yPosition - 1, true);
             }
         }
     }

@@ -60,4 +60,64 @@ public class MapTest {
         Map map = new Map(inputMatrix);
         assertThat(map.getCoordinateInMap(4, 0).isAccessible()).isEqualTo(true);
     }
+
+    @Test
+    void testMapAndActionMovesRover() {
+        String[][] inputMatrix = {
+            {"🟩", "🟩", "🌳", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🌳", "🟩"},
+            {"🟩", "🌳", "🟩", "🟩", "🟩"},
+            {"E", "🟩", "🟩", "🟩", "🟩"}
+        };
+        Map map = new Map(inputMatrix);
+        map.applyAction(Action.FORWARD);
+        assertThat(map.getRover().getDirection()).isEqualTo(Direction.EAST);
+        assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(4,1)");
+    }
+
+    @Test
+    void testMapAndActionDoesNotMoveRoverWhenObstacle() {
+        String[][] inputMatrix = {
+            {"🟩", "🟩", "🌳", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🌳", "🟩"},
+            {"E", "🌳", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"}
+        };
+        Map map = new Map(inputMatrix);
+        map.applyAction(Action.FORWARD);
+        assertThat(map.getRover().getDirection()).isEqualTo(Direction.EAST);
+        assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,0)");
+    }
+
+    @Test
+    void testMapAndActionMovesDirectionOfRover() {
+        String[][] inputMatrix = {
+            {"🟩", "🟩", "🌳", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🌳", "🟩"},
+            {"E", "🌳", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"}
+        };
+        Map map = new Map(inputMatrix);
+        map.applyAction(Action.LEFT);
+        assertThat(map.getRover().getDirection()).isEqualTo(Direction.NORTH);
+        assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,0)");
+    }
+
+    @Test
+    void testMapAndActionMovesRoverAcrossMap() {
+        String[][] inputMatrix = {
+            {"🟩", "🟩", "🌳", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🌳", "🟩"},
+            {"W", "🌳", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"}
+        };
+        Map map = new Map(inputMatrix);
+        map.applyAction(Action.FORWARD);
+        assertThat(map.getRover().getDirection()).isEqualTo(Direction.WEST);
+        assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,4)");
+    }
 }

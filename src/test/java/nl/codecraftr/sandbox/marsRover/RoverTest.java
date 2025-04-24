@@ -12,7 +12,7 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.NORTH);
         var action = Action.LEFT;
 
-        var resultRover = rover.doAction(action);
+        var resultRover = rover.doAction(action, true);
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.WEST);
     }
@@ -23,7 +23,7 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.NORTH);
         var action = Action.RIGHT;
 
-        var resultRover = rover.doAction(action);
+        var resultRover = rover.doAction(action, true);
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.EAST);
     }
@@ -34,7 +34,7 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.EAST);
         var action = Action.LEFT;
 
-        var resultRover = rover.doAction(action);
+        var resultRover = rover.doAction(action, true);
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.NORTH);
     }
@@ -45,7 +45,7 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.EAST);
         var action = Action.RIGHT;
 
-        var resultRover = rover.doAction(action);
+        var resultRover = rover.doAction(action, true);
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.SOUTH);
     }
@@ -56,7 +56,7 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.SOUTH);
         var action = Action.LEFT;
 
-        var resultRover = rover.doAction(action);
+        var resultRover = rover.doAction(action, true);
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.EAST);
     }
@@ -67,7 +67,7 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.SOUTH);
         var action = Action.RIGHT;
 
-        var resultRover = rover.doAction(action);
+        var resultRover = rover.doAction(action, true);
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.WEST);
     }
@@ -78,7 +78,7 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.WEST);
         var action = Action.LEFT;
 
-        var resultRover = rover.doAction(action);
+        var resultRover = rover.doAction(action, true);
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.SOUTH);
     }
@@ -89,7 +89,7 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.WEST);
         var action = Action.RIGHT;
 
-        var resultRover = rover.doAction(action);
+        var resultRover = rover.doAction(action, true);
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.NORTH);
     }
@@ -100,8 +100,8 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.NORTH);
         var action = Action.FORWARD;
 
-        var resultRover = rover.doAction(action);
-        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,4)");
+        var resultRover = rover.doAction(action, true);
+        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(4,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.NORTH);
     }
 
@@ -111,8 +111,8 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.SOUTH);
         var action = Action.FORWARD;
 
-        var resultRover = rover.doAction(action);
-        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,1)");
+        var resultRover = rover.doAction(action, true);
+        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(1,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.SOUTH);
     }
 
@@ -122,8 +122,8 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.WEST);
         var action = Action.FORWARD;
 
-        var resultRover = rover.doAction(action);
-        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(4,0)");
+        var resultRover = rover.doAction(action, true);
+        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,4)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.WEST);
     }
 
@@ -133,8 +133,52 @@ public class RoverTest {
         var rover = new Rover(coordinate, Direction.EAST);
         var action = Action.FORWARD;
 
-        var resultRover = rover.doAction(action);
-        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(1,0)");
+        var resultRover = rover.doAction(action, true);
+        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,1)");
+        assertThat(resultRover.getDirection()).isEqualTo(Direction.EAST);
+    }
+
+    @Test
+    public void testRoverActionForwardNorthCannotMove() {
+        var coordinate = new Coordinate(0, 0, true);
+        var rover = new Rover(coordinate, Direction.NORTH);
+        var action = Action.FORWARD;
+
+        var resultRover = rover.doAction(action, false);
+        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
+        assertThat(resultRover.getDirection()).isEqualTo(Direction.NORTH);
+    }
+
+    @Test
+    public void testRoverActionForwardSouthCannotMove() {
+        var coordinate = new Coordinate(0, 0, true);
+        var rover = new Rover(coordinate, Direction.SOUTH);
+        var action = Action.FORWARD;
+
+        var resultRover = rover.doAction(action, false);
+        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
+        assertThat(resultRover.getDirection()).isEqualTo(Direction.SOUTH);
+    }
+
+    @Test
+    public void testRoverActionForwardWestCannotMove() {
+        var coordinate = new Coordinate(0, 0, true);
+        var rover = new Rover(coordinate, Direction.WEST);
+        var action = Action.FORWARD;
+
+        var resultRover = rover.doAction(action, false);
+        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
+        assertThat(resultRover.getDirection()).isEqualTo(Direction.WEST);
+    }
+
+    @Test
+    public void testRoverActionForwardEastCannotMove() {
+        var coordinate = new Coordinate(0, 0, true);
+        var rover = new Rover(coordinate, Direction.EAST);
+        var action = Action.FORWARD;
+
+        var resultRover = rover.doAction(action, false);
+        assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(0,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.EAST);
     }
 
@@ -143,7 +187,7 @@ public class RoverTest {
         var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.NORTH);
         var prospectCoordinate = rover.getProspectCoordinate();
-        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(0,4)");
+        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(4,0)");
     }
 
     @Test
@@ -151,7 +195,7 @@ public class RoverTest {
         var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.SOUTH);
         var prospectCoordinate = rover.getProspectCoordinate();
-        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(0,1)");
+        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(1,0)");
     }
 
     @Test
@@ -159,7 +203,7 @@ public class RoverTest {
         var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.WEST);
         var prospectCoordinate = rover.getProspectCoordinate();
-        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(4,0)");
+        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(0,4)");
     }
 
     @Test
@@ -167,6 +211,6 @@ public class RoverTest {
         var coordinate = new Coordinate(0, 0, true);
         var rover = new Rover(coordinate, Direction.EAST);
         var prospectCoordinate = rover.getProspectCoordinate();
-        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(1,0)");
+        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(0,1)");
     }
 }
