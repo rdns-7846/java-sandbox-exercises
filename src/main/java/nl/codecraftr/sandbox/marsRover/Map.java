@@ -30,14 +30,7 @@ public class Map {
     }
 
     private boolean fieldIsAccesible(String field) {
-        switch (field) {
-            case "🌳" -> {
-                return false;
-            }
-            default -> {
-                return true;
-            }
-        }
+        return !field.equals("🌳");
     }
 
     private Optional<Rover> fieldToRover(String field, int x, int y) {
@@ -63,11 +56,13 @@ public class Map {
         return grid.get(x).get(y);
     }
 
-    public void applyAction(Action action) {
-        var rover = this.rover;
-        var nextCoordinate = rover.getProspectCoordinate();
-        boolean isAccessible = this.getCoordinateInMap(nextCoordinate.getX(), nextCoordinate.getY())
-                .isAccessible();
-        this.rover = rover.doAction(action, isAccessible);
+    public void applyAction(List<Action> actions) {
+        actions.forEach(action -> {
+            var rover = this.rover;
+            var nextCoordinate = rover.getProspectCoordinate();
+            boolean isAccessible = this.getCoordinateInMap(nextCoordinate.getX(), nextCoordinate.getY())
+                    .isAccessible();
+            this.rover = rover.doAction(action, isAccessible);
+        });
     }
 }

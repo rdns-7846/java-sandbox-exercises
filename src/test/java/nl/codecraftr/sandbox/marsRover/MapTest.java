@@ -2,6 +2,7 @@ package nl.codecraftr.sandbox.marsRover;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class MapTest {
@@ -71,7 +72,9 @@ public class MapTest {
             {"E", "🟩", "🟩", "🟩", "🟩"}
         };
         Map map = new Map(inputMatrix);
-        map.applyAction(Action.FORWARD);
+        var actionList = List.of(Action.FORWARD);
+
+        map.applyAction(actionList);
         assertThat(map.getRover().getDirection()).isEqualTo(Direction.EAST);
         assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(4,1)");
     }
@@ -86,7 +89,9 @@ public class MapTest {
             {"🟩", "🟩", "🟩", "🟩", "🟩"}
         };
         Map map = new Map(inputMatrix);
-        map.applyAction(Action.FORWARD);
+        var actionList = List.of(Action.FORWARD);
+
+        map.applyAction(actionList);
         assertThat(map.getRover().getDirection()).isEqualTo(Direction.EAST);
         assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,0)");
     }
@@ -101,7 +106,9 @@ public class MapTest {
             {"🟩", "🟩", "🟩", "🟩", "🟩"}
         };
         Map map = new Map(inputMatrix);
-        map.applyAction(Action.LEFT);
+        var actionList = List.of(Action.LEFT);
+
+        map.applyAction(actionList);
         assertThat(map.getRover().getDirection()).isEqualTo(Direction.NORTH);
         assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,0)");
     }
@@ -116,7 +123,9 @@ public class MapTest {
             {"🟩", "🟩", "🟩", "🟩", "🟩"}
         };
         Map map = new Map(inputMatrix);
-        map.applyAction(Action.RIGHT);
+        var actionList = List.of(Action.RIGHT);
+
+        map.applyAction(actionList);
         assertThat(map.getRover().getDirection()).isEqualTo(Direction.SOUTH);
         assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,0)");
     }
@@ -131,8 +140,28 @@ public class MapTest {
             {"🟩", "🟩", "🟩", "🟩", "🟩"}
         };
         Map map = new Map(inputMatrix);
-        map.applyAction(Action.FORWARD);
+        var actionList = List.of(Action.FORWARD);
+
+        map.applyAction(actionList);
         assertThat(map.getRover().getDirection()).isEqualTo(Direction.WEST);
         assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,4)");
+    }
+
+    @Test
+    void testMapAndApplyStringInstructions() {
+        String[][] inputMatrix = {
+            {"🟩", "🟩", "🌳", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🌳", "🟩"},
+            {"W", "🌳", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"}
+        };
+        Map map = new Map(inputMatrix);
+        var actionString = "FFFFFFFF";
+        var actionList = InstructionsReader.toActionList(actionString);
+
+        map.applyAction(actionList);
+        assertThat(map.getRover().getDirection()).isEqualTo(Direction.WEST);
+        assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,2)");
     }
 }
