@@ -29,7 +29,7 @@ public class Map {
                 .orElse(null);
     }
 
-    public boolean fieldIsAccesible(String field) {
+    private boolean fieldIsAccesible(String field) {
         switch (field) {
             case "🌳" -> {
                 return false;
@@ -40,7 +40,7 @@ public class Map {
         }
     }
 
-    public Optional<Rover> fieldToRover(String field, int x, int y) {
+    private Optional<Rover> fieldToRover(String field, int x, int y) {
         var coordinate = new Coordinate(x, y, true);
         switch (field) {
             case "E" -> {
@@ -57,5 +57,9 @@ public class Map {
             }
         }
         return Optional.empty();
+    }
+
+    public Coordinate getCoordinateInMap(int x, int y) {
+        return grid.get(x).get(y);
     }
 }
