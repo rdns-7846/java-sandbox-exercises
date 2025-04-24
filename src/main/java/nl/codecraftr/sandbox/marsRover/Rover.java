@@ -10,9 +10,13 @@ public class Rover {
     @Getter
     private Direction direction;
 
+    @Getter
+    private Coordinate prospectCoordinate;
+
     public Rover(Coordinate coordinate, Direction direction) {
         this.coordinate = coordinate;
         this.direction = direction;
+        this.prospectCoordinate = this.prospectCoordinate();
     }
 
     public Rover doAction(Action action) {
@@ -28,11 +32,30 @@ public class Rover {
     }
 
     private Rover move() {
-        var newCoordinate = this.coordinate.determineNeighbor(this.direction);
-        if (newCoordinate.isAccessible()) {
-            return new Rover(newCoordinate, this.direction);
+        if (prospectCoordinate.isAccessible()) {
+            return new Rover(prospectCoordinate, this.direction);
         }
         return this;
+    }
+
+    public Coordinate prospectCoordinate() {
+        var xPosition = this.coordinate.getX();
+        var yPosition = this.coordinate.getY();
+
+        switch (direction) {
+            case NORTH -> {
+                return new Coordinate(xPosition, yPosition - 1, true);
+            }
+            case EAST -> {
+                return new Coordinate(xPosition + 1, yPosition, true);
+            }
+            case SOUTH -> {
+                return new Coordinate(xPosition, yPosition + 1, true);
+            }
+            default -> { // WEST
+                return new Coordinate(xPosition - 1, yPosition, true);
+            }
+        }
     }
 
     private Direction determineNewDirection(Action action) {

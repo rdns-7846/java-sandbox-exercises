@@ -6,7 +6,10 @@ public class Coordinate {
 
     public final int MAX_FIELD = 5;
 
+    @Getter
     private int x;
+
+    @Getter
     private int y;
 
     @Getter
@@ -30,22 +33,5 @@ public class Coordinate {
             return 0;
         }
         return coordinateNumeral;
-    }
-
-    public Coordinate determineNeighbor(Direction direction) {
-        switch (direction) {
-            case NORTH -> {
-                return new Coordinate(this.x, this.y - 1, true);
-            }
-            case EAST -> {
-                return new Coordinate(this.x + 1, this.y, true);
-            }
-            case SOUTH -> {
-                return new Coordinate(this.x, this.y + 1, true);
-            }
-            default -> { // WEST
-                return new Coordinate(this.x - 1, this.y, true);
-            }
-        }
     }
 }

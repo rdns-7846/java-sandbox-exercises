@@ -137,4 +137,36 @@ public class RoverTest {
         assertThat(resultRover.getCoordinate().getPosition()).isEqualTo("(1,0)");
         assertThat(resultRover.getDirection()).isEqualTo(Direction.EAST);
     }
+
+    @Test
+    public void testCoordinateDetermineNeighborNorth() {
+        var coordinate = new Coordinate(0, 0, true);
+        var rover = new Rover(coordinate, Direction.NORTH);
+        var prospectCoordinate = rover.getProspectCoordinate();
+        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(0,4)");
+    }
+
+    @Test
+    public void testCoordinateDetermineNeighborSouth() {
+        var coordinate = new Coordinate(0, 0, true);
+        var rover = new Rover(coordinate, Direction.SOUTH);
+        var prospectCoordinate = rover.getProspectCoordinate();
+        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(0,1)");
+    }
+
+    @Test
+    public void testCoordinateDetermineNeighborWest() {
+        var coordinate = new Coordinate(0, 0, true);
+        var rover = new Rover(coordinate, Direction.WEST);
+        var prospectCoordinate = rover.getProspectCoordinate();
+        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(4,0)");
+    }
+
+    @Test
+    public void testCoordinateDetermineNeighborEast() {
+        var coordinate = new Coordinate(0, 0, true);
+        var rover = new Rover(coordinate, Direction.EAST);
+        var prospectCoordinate = rover.getProspectCoordinate();
+        assertThat(prospectCoordinate).extracting(Coordinate::getPosition).isEqualTo("(1,0)");
+    }
 }
