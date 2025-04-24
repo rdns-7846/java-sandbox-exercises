@@ -107,6 +107,21 @@ public class MapTest {
     }
 
     @Test
+    void testMapAndActionMovesDirectionOfRoverRight() {
+        String[][] inputMatrix = {
+            {"🟩", "🟩", "🌳", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🌳", "🟩"},
+            {"E", "🌳", "🟩", "🟩", "🟩"},
+            {"🟩", "🟩", "🟩", "🟩", "🟩"}
+        };
+        Map map = new Map(inputMatrix);
+        map.applyAction(Action.RIGHT);
+        assertThat(map.getRover().getDirection()).isEqualTo(Direction.SOUTH);
+        assertThat(map.getRover().getCoordinate().getPosition()).isEqualTo("(3,0)");
+    }
+
+    @Test
     void testMapAndActionMovesRoverAcrossMap() {
         String[][] inputMatrix = {
             {"🟩", "🟩", "🌳", "🟩", "🟩"},
